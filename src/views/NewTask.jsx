@@ -13,7 +13,7 @@ function NewTodo() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-teal-50 to-amber-50 px-4">
       <div className="bg-white shadow-lg rounded-2xl w-full max-w-md p-8">
         <h1 className="text-4xl font-bold text-center text-blue-800 mb-8">
-          ✨ New Task
+          📝 New Task
         </h1>
 
         <div className="space-y-6">
@@ -55,16 +55,25 @@ function NewTodo() {
           </div>
 
           {/* Emoji Picker */}
-          <div className="flex items-center gap-2">
-            <label className="text-gray-700 font-semibold mb-2">
-              Select Emoji
-            </label>
-            <span
-              className="text-2xl pb-2 cursor-pointer hover:scale-120 duration-300"
+          <div className="relative flex flex-col gap-2">
+            <button
+              type="button"
+              className="flex items-center justify-center w-12 h-12 pb-1 text-3xl border rounded-lg hover:bg-gray-100 group transition cursor-pointer"
               onClick={() => setIsEmojiOpen(!isEmojiOpen)}
             >
-              {newtask.emoji ? newtask.emoji : "🤩"}
-            </span>
+              <span className="group-hover:scale-110 duration-300">
+                {newtask.emoji ? newtask.emoji : "🎯"}
+              </span>
+            </button>
+            <div className="absolute z-50 left-14 -top-72">
+              <EmojiPicker
+                onEmojiClick={(emojiData) => {
+                  setNewTask({ ...newtask, emoji: emojiData.emoji });
+                  setIsEmojiOpen(false);
+                }}
+                open={isEmojiOpen}
+              />
+            </div>
           </div>
 
           {/* Add Task Button */}
@@ -77,14 +86,6 @@ function NewTodo() {
           />
         </div>
       </div>
-
-      <EmojiPicker
-        onEmojiClick={(emojiData) => {
-          setNewTask({ ...newtask, emoji: emojiData.emoji });
-          setIsEmojiOpen(false);
-        }}
-        open={isEmojiOpen}
-      />
     </div>
   );
 }
