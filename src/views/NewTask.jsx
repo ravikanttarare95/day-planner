@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 function NewTodo() {
+  const [newtask, setNewTask] = useState({
+    todo: "asd",
+    priority: "H",
+    emoji: "🟢",
+  });
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-teal-50 to-amber-50 px-4">
       <div className="bg-white shadow-lg rounded-2xl w-full max-w-md p-8">
@@ -18,7 +23,11 @@ function NewTodo() {
               type="text"
               placeholder="Enter your task..."
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
+              onChange={(e) => setNewTask({ ...newtask, todo: e.target.value })}
             />
+            {newtask.todo}
+            {newtask.emoji}
+            {newtask.priority}
           </div>
 
           {/* Priority Select */}
@@ -34,6 +43,9 @@ function NewTodo() {
               id="select-priority"
               defaultValue=""
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
+              onChange={(e) =>
+                setNewTask({ ...newtask, priority: e.target.value })
+              }
             >
               <option value="">Select Priority</option>
               <option value="high">🔴 High</option>
@@ -47,13 +59,18 @@ function NewTodo() {
             <label className="text-gray-700 font-semibold mb-2">
               Select Emoji
             </label>
-            <span className="text-2xl pb-2 cursor-pointer hover:scale-120 duration-300">
+            <span
+              className="text-2xl pb-2 cursor-pointer hover:scale-120 duration-300"
+              onChange={(e) =>
+                setNewTask({ ...newtask, emoji: e.target.value })
+              }
+            >
               🤩
             </span>
           </div>
 
           {/* Add Task Button */}
-          <button className="w-full py-3 rounded-lg bg-amber-500 text-white font-semibold text-lg hover:bg-amber-600 transition">
+          <button className="w-full py-3 rounded-lg bg-amber-500 text-white font-semibold text-lg hover:bg-amber-600 transition cursor-pointer">
             + Add Task
           </button>
         </div>
