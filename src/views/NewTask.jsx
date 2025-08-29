@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import EmojiPicker from "emoji-picker-react";
+import Button from "./../components/Button";
 
 function NewTodo() {
   const [newtask, setNewTask] = useState({
@@ -67,9 +68,13 @@ function NewTodo() {
           </div>
 
           {/* Add Task Button */}
-          <button className="w-full py-3 rounded-lg bg-amber-500 text-white font-semibold text-lg hover:bg-amber-600 transition cursor-pointer">
-            + Add Task
-          </button>
+          <Button
+            btnTitle="+ Add Task"
+            customStyle={"w-full text-lg"}
+            onBtnClick={() => {
+              asd;
+            }}
+          />
         </div>
       </div>
 

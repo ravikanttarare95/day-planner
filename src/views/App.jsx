@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import TodoObj from "./../components/TodoObj";
 import { useNavigate } from "react-router";
+import Button from "./../components/Button";
 
 function App() {
   const navigate = useNavigate();
@@ -42,23 +43,20 @@ function App() {
               <p className="text-gray-500 mt-2">
                 You haven’t planned your day. Start by adding your first task!
               </p>
-              <button
-                className="mt-6 px-5 py-2 rounded-lg bg-amber-500 text-white font-semibold hover:bg-amber-600 transition cursor-pointer"
-                onClick={goToAddTask}
-              >
-                + New Task
-              </button>
+
+              <Button btnTitle="+ New Task" onBtnClick={goToAddTask} />
             </div>
           </div>
         ) : (
           <div className="relative">
             {" "}
-            <button
-              className="fixed bottom-5 right-5 sm:bottom-7 sm:right-7 md:bottom-10 md:right-10 mt-6 px-5 py-2 rounded-lg bg-amber-500 text-white font-semibold hover:bg-amber-600 transition cursor-pointer"
-              onClick={goToAddTask}
-            >
-              + New Task
-            </button>
+            <Button
+              btnTitle="+ New Task"
+              onBtnClick={goToAddTask}
+              customStyle={
+                "fixed bottom-5 right-5 sm:bottom-7 sm:right-7 md:bottom-10 md:right-10 "
+              }
+            />
             {toDos.map((toDoObj) => {
               const { id, emogy, todo, priority, isDone, createdAt } = toDoObj;
               return (
