@@ -58,12 +58,12 @@ function App() {
               }
             />
             {toDos.map((toDoObj) => {
-              const { id, emogy, todo, priority, isDone, createdAt } = toDoObj;
+              const { id, emoji, todo, priority, isDone, createdAt } = toDoObj;
               return (
                 <TodoObj
                   key={id}
                   todo={todo}
-                  emogy={emogy}
+                  emoji={emoji}
                   priority={priority}
                   isDone={isDone}
                   createdAt={createdAt}

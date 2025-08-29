@@ -1,6 +1,6 @@
 import React from "react";
 
-function TodoObj({ todo, emogy, priority, isDone, createdAt }) {
+function TodoObj({ todo, emoji, priority, isDone, createdAt }) {
   const priorityStyles = {
     high: {
       border: "border-l-red-500",
@@ -27,7 +27,7 @@ function TodoObj({ todo, emogy, priority, isDone, createdAt }) {
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <span className="text-3xl">{emogy}</span>
+          <span className="text-3xl">{emoji}</span>
           <p
             className={`text-lg sm:text-xl font-semibold ${
               isDone ? "line-through text-gray-400" : "text-gray-900"

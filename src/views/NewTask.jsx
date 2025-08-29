@@ -1,14 +1,29 @@
 import React, { useState } from "react";
 import EmojiPicker from "emoji-picker-react";
 import Button from "./../components/Button";
+import axios from "axios";
+import { useNavigate } from "react-router";
 
 function NewTodo() {
   const [newtask, setNewTask] = useState({
     todo: "",
     priority: "",
-    emoji: "",
+    emoji: "🎯",
   });
   const [isEmojiOpen, setIsEmojiOpen] = useState(false);
+
+  const navigate = useNavigate();
+
+  const addTask = async () => {
+    const response = await axios.post("http://localhost:8080/todos", newtask);
+    if (response) {
+      alert(response.data.message);
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-teal-50 to-amber-50 px-4">
       <div className="bg-white shadow-lg rounded-2xl w-full max-w-md p-8">
@@ -80,9 +95,7 @@ function NewTodo() {
           <Button
             btnTitle="+ Add Task"
             customStyle={"w-full text-lg"}
-            onBtnClick={() => {
-              asd;
-            }}
+            onBtnClick={addTask}
           />
         </div>
       </div>
