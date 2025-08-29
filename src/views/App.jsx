@@ -16,15 +16,16 @@ function App() {
   return (
     // blue / teal / amber
     <div>
-      <h1 className="text-5xl text-cyan-800 text-center my-5 font-bold">
+      <h1 className="text-5xl text-blue-950 text-center my-5 font-bold">
         DayPlanner
       </h1>
       {toDos.map((toDoObj) => {
-        const { id, todo, priority, isDone, createdAt } = toDoObj;
+        const { id, emogy, todo, priority, isDone, createdAt } = toDoObj;
         return (
           <div key={id}>
             <TodoObj
               todo={todo}
+              emogy={emogy}
               priority={priority}
               isDone={isDone}
               createdAt={createdAt}
