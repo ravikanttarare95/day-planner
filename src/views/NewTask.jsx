@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import EmojiPicker from "emoji-picker-react";
 
 function NewTodo() {
   const [newtask, setNewTask] = useState({
-    todo: "asd",
-    priority: "H",
-    emoji: "🟢",
+    todo: "",
+    priority: "",
+    emoji: "",
   });
+  const [isEmojiOpen, setIsEmojiOpen] = useState(false);
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-teal-50 to-amber-50 px-4">
       <div className="bg-white shadow-lg rounded-2xl w-full max-w-md p-8">
@@ -25,9 +27,6 @@ function NewTodo() {
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
               onChange={(e) => setNewTask({ ...newtask, todo: e.target.value })}
             />
-            {newtask.todo}
-            {newtask.emoji}
-            {newtask.priority}
           </div>
 
           {/* Priority Select */}
@@ -61,11 +60,9 @@ function NewTodo() {
             </label>
             <span
               className="text-2xl pb-2 cursor-pointer hover:scale-120 duration-300"
-              onChange={(e) =>
-                setNewTask({ ...newtask, emoji: e.target.value })
-              }
+              onClick={() => setIsEmojiOpen(!isEmojiOpen)}
             >
-              🤩
+              {newtask.emoji ? newtask.emoji : "🤩"}
             </span>
           </div>
 
@@ -75,6 +72,14 @@ function NewTodo() {
           </button>
         </div>
       </div>
+
+      <EmojiPicker
+        onEmojiClick={(emojiData) => {
+          setNewTask({ ...newtask, emoji: emojiData.emoji });
+          setIsEmojiOpen(false);
+        }}
+        open={isEmojiOpen}
+      />
     </div>
   );
 }
