@@ -38,7 +38,7 @@ function TodoObj({ todo, emogy, priority, isDone, createdAt }) {
         </div>
 
         <span
-          className={`px-4 py-1.5 text-sm font-medium rounded-full ${style.badge}`}
+          className={`px-4 py-1.5 text-sm font-medium rounded-full capitalize ${style.badge}`}
         >
           {priority}
         </span>

@@ -17,7 +17,7 @@ function App() {
   }, []);
 
   const goToAddTask = () => {
-    navigate("/new_todo");
+    navigate("/new_task");
   };
 
   return (
@@ -46,7 +46,7 @@ function App() {
                 className="mt-6 px-5 py-2 rounded-lg bg-amber-500 text-white font-semibold hover:bg-amber-600 transition cursor-pointer"
                 onClick={goToAddTask}
               >
-                + Add Task
+                + New Task
               </button>
             </div>
           </div>
@@ -57,7 +57,7 @@ function App() {
               className="fixed bottom-5 right-5 sm:bottom-7 sm:right-7 md:bottom-10 md:right-10 mt-6 px-5 py-2 rounded-lg bg-amber-500 text-white font-semibold hover:bg-amber-600 transition cursor-pointer"
               onClick={goToAddTask}
             >
-              + Add Task
+              + New Task
             </button>
             {toDos.map((toDoObj) => {
               const { id, emogy, todo, priority, isDone, createdAt } = toDoObj;
