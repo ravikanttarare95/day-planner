@@ -1,29 +1,37 @@
 import React from "react";
+import { Trash } from "lucide-react";
+import axios from "axios";
 
-function TodoObj({ todo, emoji, priority, isDone, createdAt }) {
+function TodoObj({ todo, emoji, priority, isDone, createdAt, id, loadToDos }) {
   const priorityStyles = {
     high: {
-      border: "border-l-red-500",
       badge: "bg-red-100 text-red-600",
     },
     medium: {
-      border: "border-l-blue-500",
       badge: "bg-blue-100 text-blue-600",
     },
     low: {
-      border: "border-l-green-500",
       badge: "bg-green-100 text-green-600",
     },
   };
 
   const style = priorityStyles[priority?.toLowerCase()] || {
-    border: "border-l-gray-400",
     badge: "bg-gray-200 text-gray-700",
+  };
+
+  const deleteTask = async (id) => {
+    const response = await axios.delete(`http://localhost:8080/todos/${id}`);
+    if (response) {
+      alert(response.data.message);
+      setTimeout(() => {
+        loadToDos();
+      }, 1000);
+    }
   };
 
   return (
     <div
-      className={`w-full max-w-2xl mx-auto my-6 p-6 rounded-xl shadow-md hover:shadow-xl transition border border-gray-200 border-l-4 ${style.border}`}
+      className={`relative w-full max-w-2xl mx-auto mt-6 p-6 rounded-xl shadow-md hover:shadow-xl transition border border-gray-400 border-l-5`}
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -36,6 +44,12 @@ function TodoObj({ todo, emoji, priority, isDone, createdAt }) {
             {todo}
           </p>
         </div>
+        <Trash
+          className="ml-auto mr-2 text-red-500 cursor-pointer bg-red-50 rounded p-1"
+          onClick={() => {
+            deleteTask(id);
+          }}
+        />
 
         <span
           className={`px-4 py-1.5 text-sm font-medium rounded-full capitalize ${style.badge}`}

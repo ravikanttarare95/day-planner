@@ -48,7 +48,7 @@ function App() {
             </div>
           </div>
         ) : (
-          <div className="relative">
+          <div className="relative p-5 scrollbar-hidden h-120 overflow-auto">
             {" "}
             <Button
               btnTitle="+ New Task"
@@ -67,6 +67,8 @@ function App() {
                   priority={priority}
                   isDone={isDone}
                   createdAt={createdAt}
+                  id={id}
+                  loadToDos={loadToDos}
                 />
               );
             })}
