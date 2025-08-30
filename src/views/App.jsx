@@ -58,7 +58,7 @@ function App() {
             <Button
               btnTitle="+ New Task"
               onBtnClick={goToAddTask}
-              customStyle="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 md:bottom-10 md:right-10 z-50 rounded-full shadow-lg bg-amber-500 hover:bg-amber-600 text-lg"
+              customStyle="fixed bottom-10 right-6 sm:right-8 z-50 text-lg"
             />
             {toDos.map((toDoObj) => {
               const { id, emoji, todo, priority, isDone, createdAt } = toDoObj;
