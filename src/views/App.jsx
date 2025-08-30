@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import TodoObj from "./../components/TodoObj";
 import { useNavigate } from "react-router";
 import Button from "./../components/Button";
+import logo from "./../../public/logo.png";
 
 function App() {
   const navigate = useNavigate();
@@ -27,8 +28,11 @@ function App() {
         <h1 className="text-5xl font-extrabold text-blue-800 drop-shadow-sm">
           DayPlanner
         </h1>
-        <p className="text-green-600 mt-2 font-medium">
-          Plan your day smartly ✨
+        <p className="text-green-600 mt-2 font-medium flex justify-center items-center gap-2">
+          Plan your day smartly{" "}
+          <span>
+            <img src={logo} alt="Logo" className="w-5" />
+          </span>
         </p>
       </header>
 
