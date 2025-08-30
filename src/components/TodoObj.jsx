@@ -2,6 +2,7 @@ import React from "react";
 import { Trash, SquarePen } from "lucide-react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { Link } from "react-router";
 
 function TodoObj({ todo, emoji, priority, isDone, createdAt, id, loadToDos }) {
   const priorityStyles = {
@@ -44,12 +45,16 @@ function TodoObj({ todo, emoji, priority, isDone, createdAt, id, loadToDos }) {
 
   return (
     <div
-      className={`relative w-full max-w-full sm:max-w-xl md:max-w-2xl mx-auto mt-4 py-3 px-4 rounded-2xl shadow-md hover:shadow-lg transition ${style.border} bg-gradient-to-tl from-cyan-50 via-white to-white`}
+      className={`relative w-full mx-auto mt-4 py-3 px-4 rounded-md sm:rounded-xl shadow-md hover:shadow-lg transition ${style.border} bg-gradient-to-tl from-cyan-50 via-white to-white`}
     >
       <div className=" flex gap-2 sm:gap-3 justify-end -mt-2 -mr-2">
-        <SquarePen className="text-gray-500 cursor-pointer w-4 sm:w-5 transition" />
+        {
+          <Link to={`/edit_task/${id}`}>
+            <SquarePen className="text-gray-600 cursor-pointer w-4 sm:w-5 transition opacity-80 hover:opacity-100" />
+          </Link>
+        }
         <Trash
-          className="text-red-500 cursor-pointer w-4 sm:w-5 transition"
+          className="text-red-600 cursor-pointer w-4 sm:w-5 transition opacity-70 hover:opacity-100"
           onClick={() => deleteTask(id)}
         />
       </div>

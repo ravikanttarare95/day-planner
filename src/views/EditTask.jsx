@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import EmojiPicker from "emoji-picker-react";
 import Button from "./../components/Button";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import toast, { Toaster } from "react-hot-toast";
 import Footer from "./../components/Footer";
 
-function NewTodo() {
-  const [newtask, setNewTask] = useState({
+function EditTodo() {
+  const [editTask, setEditTask] = useState({
     todo: "",
     priority: "",
     emoji: "🎯",
@@ -15,11 +15,12 @@ function NewTodo() {
   const [isEmojiOpen, setIsEmojiOpen] = useState(false);
 
   const navigate = useNavigate();
+  const { id } = useParams();
 
-  const addTask = async () => {
-    const response = await axios.post(
-      `${import.meta.env.VITE_API_URL}/todos`,
-      newtask
+  const updateTask = async (id) => {
+    const response = await axios.put(
+      `${import.meta.env.VITE_API_URL}/todos/${id}`,
+      editTask
     );
     if (response) {
       toast.success(response.data.message);
@@ -29,11 +30,28 @@ function NewTodo() {
     }
   };
 
+  const loadTask = async (id) => {
+    if (!id) return;
+    const response = await axios.get(
+      `${import.meta.env.VITE_API_URL}/todos/${id}`
+    );
+    const loadedData = response.data.data;
+    setEditTask({
+      todo: loadedData.todo,
+      priority: loadedData.priority,
+      emoji: loadedData.emoji || "🎯",
+    });
+  };
+
+  useEffect(() => {
+    loadTask(id);
+  }, [id]);
+
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-cyan-50 via-teal-50 to-amber-50 px-4">
       <div className="bg-white/90 shadow-2xl rounded-2xl w-full max-w-md p-10">
         <h1 className="text-4xl font-bold text-center text-cyan-800 mb-8 tracking-tight">
-          📝 New Task
+          📝 Edit Task {id}
         </h1>
 
         <div className="space-y-7">
@@ -44,8 +62,11 @@ function NewTodo() {
             <input
               type="text"
               placeholder="Enter your task..."
+              value={editTask.todo}
               className="w-full px-4 py-2 ring ring-cyan-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 bg-cyan-50/50"
-              onChange={(e) => setNewTask({ ...newtask, todo: e.target.value })}
+              onChange={(e) =>
+                setEditTask({ ...editTask, todo: e.target.value })
+              }
             />
           </div>
 
@@ -59,10 +80,11 @@ function NewTodo() {
             <select
               name="select-priority"
               id="select-priority"
-              defaultValue=""
+              // defaultValue=""
+              value={editTask.priority}
               className="w-full px-4 py-2 ring ring-cyan-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 bg-cyan-50/50"
               onChange={(e) =>
-                setNewTask({ ...newtask, priority: e.target.value })
+                setEditTask({ ...editTask, priority: e.target.value })
               }
             >
               <option value="">Select Priority</option>
@@ -79,15 +101,17 @@ function NewTodo() {
               onClick={() => setIsEmojiOpen(!isEmojiOpen)}
             >
               <span className="group-hover:scale-110 duration-300">
-                {newtask.emoji ? newtask.emoji : "🎯"}
+                {editTask.emoji ? editTask.emoji : "🎯"}
               </span>
             </button>
           </div>
 
           <Button
-            btnTitle="+ Add Task"
+            btnTitle="+ Update Task"
             customStyle="w-full text-lg bg-amber-500 hover:bg-amber-600"
-            onBtnClick={addTask}
+            onBtnClick={() => {
+              updateTask(id);
+            }}
           />
         </div>
       </div>
@@ -95,7 +119,7 @@ function NewTodo() {
       <div className="absolute z-50 mt-2 sm:mt-3 left-1/2 -translate-x-1/2 w-[310px] sm:w-[380px] max-w-[90vw]">
         <EmojiPicker
           onEmojiClick={(emojiData) => {
-            setNewTask({ ...newtask, emoji: emojiData.emoji });
+            setEditTask({ ...editTask, emoji: emojiData.emoji });
             setIsEmojiOpen(false);
           }}
           open={isEmojiOpen}
@@ -107,4 +131,4 @@ function NewTodo() {
   );
 }
 
-export default NewTodo;
+export default EditTodo;
