@@ -21,6 +21,7 @@ function NewTodo() {
       `${import.meta.env.VITE_API_URL}/todos`,
       newtask
     );
+    console.log(response);
     if (response) {
       toast.success(response.data.message);
       setTimeout(() => {
@@ -31,20 +32,20 @@ function NewTodo() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-cyan-50 via-teal-50 to-amber-50 px-4">
-      <div className="bg-white shadow-lg rounded-2xl w-full max-w-md p-8">
-        <h1 className="text-4xl font-bold text-center text-cyan-800 mb-8">
+      <div className="bg-white/90 shadow-2xl rounded-2xl w-full max-w-md p-10">
+        <h1 className="text-4xl font-bold text-center text-cyan-800 mb-8 tracking-tight">
           📝 New Task
         </h1>
 
-        <div className="space-y-6">
+        <div className="space-y-7">
           <div>
-            <label className="block text-gray-700 font-semibold mb-2">
+            <label className="block text-cyan-700 font-semibold mb-2">
               Task
             </label>
             <input
               type="text"
               placeholder="Enter your task..."
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
+              className="w-full px-4 py-2 border border-cyan-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 bg-cyan-50/50"
               onChange={(e) => setNewTask({ ...newtask, todo: e.target.value })}
             />
           </div>
@@ -52,7 +53,7 @@ function NewTodo() {
           <div>
             <label
               htmlFor="select-priority"
-              className="block text-gray-700 font-semibold mb-2"
+              className="block text-cyan-700 font-semibold mb-2"
             >
               Priority
             </label>
@@ -60,7 +61,7 @@ function NewTodo() {
               name="select-priority"
               id="select-priority"
               defaultValue=""
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
+              className="w-full px-4 py-2 border border-cyan-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 bg-cyan-50/50"
               onChange={(e) =>
                 setNewTask({ ...newtask, priority: e.target.value })
               }
@@ -75,7 +76,7 @@ function NewTodo() {
           <div className="relative flex flex-col gap-2">
             <button
               type="button"
-              className="flex items-center justify-center w-12 h-12 pb-1 text-3xl border rounded-lg hover:bg-gray-100 group transition cursor-pointer"
+              className="flex items-center justify-center w-12 h-12 pb-1 text-3xl border border-cyan-200 rounded-lg hover:bg-cyan-100 group transition cursor-pointer bg-cyan-50"
               onClick={() => setIsEmojiOpen(!isEmojiOpen)}
             >
               <span className="group-hover:scale-110 duration-300">
@@ -95,11 +96,11 @@ function NewTodo() {
 
           <Button
             btnTitle="+ Add Task"
-            customStyle={"w-full text-lg"}
+            customStyle="w-full text-lg bg-amber-500 hover:bg-amber-600"
             onBtnClick={addTask}
           />
         </div>
-      </div>{" "}
+      </div>
       <Toaster />
       <Footer />
     </div>

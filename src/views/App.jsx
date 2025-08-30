@@ -24,43 +24,44 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-teal-50 to-amber-50">
-      <header className="py-10 text-center">
-        <h1 className="text-5xl font-extrabold text-cyan-800 drop-shadow-sm">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-cyan-50 via-white to-amber-50">
+      {/* Header */}
+      <header className="py-5 text-center">
+        <h1 className="text-5xl font-extrabold text-cyan-800 drop-shadow-sm tracking-tight">
           DayPlanner
         </h1>
-        <p className="text-green-700 mt-2 font-medium flex justify-center items-center gap-2">
-          Plan your day smartly{" "}
-          <span>
-            <img src={logo} alt="Logo" className="w-5" />
-          </span>
+        <p className="text-gray-600 mt-2 font-medium flex justify-center items-center gap-2">
+          Plan your day smartly
+          <img src={logo} alt="Logo" className="w-6 h-6 inline-block" />
         </p>
       </header>
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Main */}
+      <main className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {toDos.length === 0 ? (
-          <div className="max-w-md mx-auto mt-16 p-8 rounded-2xl shadow-md bg-gradient-to-br from-blue-50 via-white to-amber-50 text-center">
+          <div className="max-w-md mx-auto mt-20 p-10 rounded-2xl shadow-lg bg-gradient-to-br from-cyan-50 via-white to-amber-50 text-center border border-cyan-100">
             <div className="flex flex-col items-center">
-              <div className="w-16 h-16 flex items-center justify-center rounded-full bg-blue-100 text-blue-600 text-3xl mb-4">
+              <div className="w-16 h-16 flex items-center justify-center rounded-full bg-cyan-100 text-cyan-600 text-3xl mb-4 shadow-inner">
                 📝
               </div>
-              <h2 className="text-2xl font-bold text-gray-800">No Tasks Yet</h2>
-              <p className="text-gray-500 mt-2">
+              <h2 className="text-2xl font-bold text-cyan-800">No Tasks Yet</h2>
+              <p className="text-gray-500 mt-2 mb-6">
                 You haven’t planned your day. Start by adding your first task!
               </p>
-
-              <Button btnTitle="+ New Task" onBtnClick={goToAddTask} />
+              <Button
+                btnTitle="+ New Task"
+                onBtnClick={goToAddTask}
+                customStyle="bg-amber-500 hover:bg-amber-600"
+              />
             </div>
           </div>
         ) : (
-          <div className="relative p-5 scrollbar-hidden h-120 overflow-auto">
-            {" "}
+          <div className="relative bg-white rounded-xl shadow-2xl border border-cyan-100 p-6 h-[480px] overflow-y-auto">
+            {/* Floating Button */}
             <Button
               btnTitle="+ New Task"
               onBtnClick={goToAddTask}
-              customStyle={
-                "fixed bottom-5 right-5 sm:bottom-7 sm:right-7 md:bottom-10 z-50 md:right-10 "
-              }
+              customStyle="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 md:bottom-10 md:right-10 z-50 rounded-full shadow-lg bg-amber-500 hover:bg-amber-600 text-lg"
             />
             {toDos.map((toDoObj) => {
               const { id, emoji, todo, priority, isDone, createdAt } = toDoObj;
@@ -80,6 +81,8 @@ function App() {
           </div>
         )}
       </main>
+
+      {/* Footer */}
       <Footer />
     </div>
   );

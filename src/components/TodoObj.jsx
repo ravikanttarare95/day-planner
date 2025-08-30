@@ -6,18 +6,22 @@ import toast, { Toaster } from "react-hot-toast";
 function TodoObj({ todo, emoji, priority, isDone, createdAt, id, loadToDos }) {
   const priorityStyles = {
     high: {
-      badge: "bg-amber-100 text-amber-700",
+      badge: "bg-amber-100 text-amber-700 border border-amber-200",
+      border: "border-l-4 border-l-amber-500",
     },
     medium: {
-      badge: "bg-cyan-100 text-cyan-600",
+      badge: "bg-cyan-100 text-cyan-700 border border-cyan-200",
+      border: "border-l-4 border-l-cyan-500",
     },
     low: {
-      badge: "bg-green-100 text-green-600",
+      badge: "bg-green-100 text-green-700 border border-green-200",
+      border: "border-l-4 border-l-green-500",
     },
   };
 
   const style = priorityStyles[priority?.toLowerCase()] || {
     badge: "bg-gray-200 text-gray-700",
+    border: "border-l-4 border-l-gray-300",
   };
 
   const deleteTask = async (id) => {
@@ -26,9 +30,7 @@ function TodoObj({ todo, emoji, priority, isDone, createdAt, id, loadToDos }) {
     );
     if (response) {
       toast.success(response.data.message);
-      setTimeout(() => {
-        loadToDos();
-      }, 1000);
+      loadToDos();
     }
   };
 
@@ -42,44 +44,41 @@ function TodoObj({ todo, emoji, priority, isDone, createdAt, id, loadToDos }) {
 
   return (
     <div
-      className={`relative w-full max-w-2xl mx-auto mt-6 p-6 rounded-xl shadow-md hover:shadow-xl transition border border-gray-400 border-l-5`}
+      className={`relative w-full max-w-2xl mx-auto mt-4 p-5 rounded-xl shadow-md hover:shadow-lg transition ${style.border} bg-gradient-to-tl from-cyan-50 via-white to-white`}
     >
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-3">
         <input
           type="checkbox"
           checked={isDone}
-          onChange={(e) => {
-            markToDone(id, e.target.checked);
-          }}
+          onChange={(e) => markToDone(id, e.target.checked)}
+          className="w-5 h-5 accent-cyan-600 cursor-pointer"
         />
-        <div className="flex items-center gap-3">
+        <div className="flex-1 flex items-center gap-3">
           <span className="text-3xl">{emoji}</span>
           <p
-            className={`text-lg sm:text-xl font-semibold ${
-              isDone ? "line-through text-gray-400" : "text-gray-900"
+            className={`text-lg font-semibold ${
+              isDone ? "line-through text-gray-400" : "text-cyan-900"
             }`}
           >
             {todo}
           </p>
         </div>
         <Trash
-          className="ml-auto mr-2 text-red-500 cursor-pointer bg-red-50 rounded p-1"
-          onClick={() => {
-            deleteTask(id);
-          }}
+          className="text-red-500 cursor-pointer bg-red-50 rounded p-1 hover:bg-red-100 transition"
+          onClick={() => deleteTask(id)}
         />
+      </div>
 
+      <div className="mt-3 flex justify-between items-center">
         <span
-          className={`px-4 py-1.5 text-sm font-medium rounded-full capitalize ${style.badge}`}
+          className={`px-3 py-1 text-xs font-medium rounded-full capitalize ${style.badge}`}
         >
           {priority}
         </span>
-      </div>
-      <div className="mt-4 flex justify-end">
         <p className="text-sm text-gray-400 italic">
           {createdAt.slice(0, 16).replace("T", " ")}
         </p>
-      </div>{" "}
+      </div>
       <Toaster />
     </div>
   );
