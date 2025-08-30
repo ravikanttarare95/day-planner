@@ -1,6 +1,7 @@
 import React from "react";
 import { Trash } from "lucide-react";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 function TodoObj({ todo, emoji, priority, isDone, createdAt, id, loadToDos }) {
   const priorityStyles = {
@@ -24,7 +25,7 @@ function TodoObj({ todo, emoji, priority, isDone, createdAt, id, loadToDos }) {
       `${import.meta.env.VITE_API_URL}/todos/${id}`
     );
     if (response) {
-      alert(response.data.message);
+      toast.success(response.data.message);
       setTimeout(() => {
         loadToDos();
       }, 1000);
@@ -59,12 +60,12 @@ function TodoObj({ todo, emoji, priority, isDone, createdAt, id, loadToDos }) {
           {priority}
         </span>
       </div>
-
       <div className="mt-4 flex justify-end">
         <p className="text-sm text-gray-400 italic">
           {createdAt.slice(0, 16).replace("T", " ")}
         </p>
-      </div>
+      </div>{" "}
+      <Toaster />
     </div>
   );
 }

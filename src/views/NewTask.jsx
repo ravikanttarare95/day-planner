@@ -3,6 +3,7 @@ import EmojiPicker from "emoji-picker-react";
 import Button from "./../components/Button";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import toast, { Toaster } from "react-hot-toast";
 
 function NewTodo() {
   const [newtask, setNewTask] = useState({
@@ -20,7 +21,7 @@ function NewTodo() {
       newtask
     );
     if (response) {
-      alert(response.data.message);
+      toast.success(response.data.message);
       setTimeout(() => {
         navigate("/");
       }, 1000);
@@ -101,7 +102,8 @@ function NewTodo() {
             onBtnClick={addTask}
           />
         </div>
-      </div>
+      </div>{" "}
+      <Toaster />
     </div>
   );
 }
