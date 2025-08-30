@@ -36,7 +36,6 @@ function NewTodo() {
         </h1>
 
         <div className="space-y-6">
-          {/* Task Input */}
           <div>
             <label className="block text-gray-700 font-semibold mb-2">
               Task
@@ -49,7 +48,6 @@ function NewTodo() {
             />
           </div>
 
-          {/* Priority Select */}
           <div>
             <label
               htmlFor="select-priority"
@@ -73,7 +71,6 @@ function NewTodo() {
             </select>
           </div>
 
-          {/* Emoji Picker */}
           <div className="relative flex flex-col gap-2">
             <button
               type="button"
@@ -95,7 +92,6 @@ function NewTodo() {
             </div>
           </div>
 
-          {/* Add Task Button */}
           <Button
             btnTitle="+ Add Task"
             customStyle={"w-full text-lg"}

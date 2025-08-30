@@ -32,11 +32,26 @@ function TodoObj({ todo, emoji, priority, isDone, createdAt, id, loadToDos }) {
     }
   };
 
+  const markToDone = async (id, isDone) => {
+    const response = await axios.patch(
+      `${import.meta.env.VITE_API_URL}/todos/${id}/status`,
+      { isDone }
+    );
+    response && loadToDos();
+  };
+
   return (
     <div
       className={`relative w-full max-w-2xl mx-auto mt-6 p-6 rounded-xl shadow-md hover:shadow-xl transition border border-gray-400 border-l-5`}
     >
       <div className="flex items-center justify-between">
+        <input
+          type="checkbox"
+          checked={isDone}
+          onChange={(e) => {
+            markToDone(id, e.target.checked);
+          }}
+        />
         <div className="flex items-center gap-3">
           <span className="text-3xl">{emoji}</span>
           <p
