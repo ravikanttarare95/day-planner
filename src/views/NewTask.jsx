@@ -15,7 +15,10 @@ function NewTodo() {
   const navigate = useNavigate();
 
   const addTask = async () => {
-    const response = await axios.post("http://localhost:8080/todos", newtask);
+    const response = await axios.post(
+      `${import.meta.env.VITE_API_URL}/todos`,
+      newtask
+    );
     if (response) {
       alert(response.data.message);
       setTimeout(() => {

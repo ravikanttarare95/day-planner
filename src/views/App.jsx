@@ -9,7 +9,7 @@ function App() {
   const [toDos, setToDos] = useState([]);
 
   const loadToDos = async () => {
-    const response = await axios.get("http://localhost:8080/todos");
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/todos`);
     setToDos(response.data.data);
   };
 
@@ -54,7 +54,7 @@ function App() {
               btnTitle="+ New Task"
               onBtnClick={goToAddTask}
               customStyle={
-                "fixed bottom-5 right-5 sm:bottom-7 sm:right-7 md:bottom-10 md:right-10 "
+                "fixed bottom-5 right-5 sm:bottom-7 sm:right-7 md:bottom-10 z-50 md:right-10 "
               }
             />
             {toDos.map((toDoObj) => {

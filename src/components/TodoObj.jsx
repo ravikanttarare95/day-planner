@@ -20,7 +20,9 @@ function TodoObj({ todo, emoji, priority, isDone, createdAt, id, loadToDos }) {
   };
 
   const deleteTask = async (id) => {
-    const response = await axios.delete(`http://localhost:8080/todos/${id}`);
+    const response = await axios.delete(
+      `${import.meta.env.VITE_API_URL}/todos/${id}`
+    );
     if (response) {
       alert(response.data.message);
       setTimeout(() => {
