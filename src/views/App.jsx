@@ -25,7 +25,6 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-cyan-50 via-white to-amber-50">
-      {/* Header */}
       <header className="py-5 text-center">
         <h1 className="text-5xl font-extrabold text-cyan-800 drop-shadow-sm tracking-tight">
           DayPlanner
@@ -36,7 +35,6 @@ function App() {
         </p>
       </header>
 
-      {/* Main */}
       <main className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {toDos.length === 0 ? (
           <div className="max-w-md mx-auto mt-20 p-10 rounded-2xl shadow-lg bg-gradient-to-br from-cyan-50 via-white to-amber-50 text-center border border-cyan-100">
@@ -57,7 +55,6 @@ function App() {
           </div>
         ) : (
           <div className="relative bg-white rounded-xl shadow-2xl border border-cyan-100 p-6 h-[480px] overflow-y-auto">
-            {/* Floating Button */}
             <Button
               btnTitle="+ New Task"
               onBtnClick={goToAddTask}
