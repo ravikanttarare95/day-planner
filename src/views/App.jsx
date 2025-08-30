@@ -4,6 +4,7 @@ import TodoObj from "./../components/TodoObj";
 import { useNavigate } from "react-router";
 import Button from "./../components/Button";
 import logo from "./../../public/logo.png";
+import Footer from "./../components/Footer";
 
 function App() {
   const navigate = useNavigate();
@@ -25,10 +26,10 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-teal-50 to-amber-50">
       <header className="py-10 text-center">
-        <h1 className="text-5xl font-extrabold text-blue-800 drop-shadow-sm">
+        <h1 className="text-5xl font-extrabold text-cyan-800 drop-shadow-sm">
           DayPlanner
         </h1>
-        <p className="text-green-600 mt-2 font-medium flex justify-center items-center gap-2">
+        <p className="text-green-700 mt-2 font-medium flex justify-center items-center gap-2">
           Plan your day smartly{" "}
           <span>
             <img src={logo} alt="Logo" className="w-5" />
@@ -79,6 +80,7 @@ function App() {
           </div>
         )}
       </main>
+      <Footer />
     </div>
   );
 }

@@ -6,10 +6,10 @@ import toast, { Toaster } from "react-hot-toast";
 function TodoObj({ todo, emoji, priority, isDone, createdAt, id, loadToDos }) {
   const priorityStyles = {
     high: {
-      badge: "bg-red-100 text-red-600",
+      badge: "bg-amber-100 text-amber-700",
     },
     medium: {
-      badge: "bg-blue-100 text-blue-600",
+      badge: "bg-cyan-100 text-cyan-600",
     },
     low: {
       badge: "bg-green-100 text-green-600",

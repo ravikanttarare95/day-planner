@@ -4,6 +4,7 @@ import Button from "./../components/Button";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import toast, { Toaster } from "react-hot-toast";
+import Footer from "./../components/Footer";
 
 function NewTodo() {
   const [newtask, setNewTask] = useState({
@@ -29,9 +30,9 @@ function NewTodo() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-teal-50 to-amber-50 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-cyan-50 via-teal-50 to-amber-50 px-4">
       <div className="bg-white shadow-lg rounded-2xl w-full max-w-md p-8">
-        <h1 className="text-4xl font-bold text-center text-blue-800 mb-8">
+        <h1 className="text-4xl font-bold text-center text-cyan-800 mb-8">
           📝 New Task
         </h1>
 
@@ -100,6 +101,7 @@ function NewTodo() {
         </div>
       </div>{" "}
       <Toaster />
+      <Footer />
     </div>
   );
 }
