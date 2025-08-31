@@ -38,11 +38,15 @@ function NewTodo() {
 
         <div className="space-y-7">
           <div>
-            <label className="block text-cyan-700 font-semibold mb-2">
+            <label
+              className="block text-cyan-700 font-semibold mb-2"
+              htmlFor="input-task"
+            >
               Task
             </label>
             <input
               type="text"
+              id="input-task"
               placeholder="Enter your task..."
               className="w-full px-4 py-2 ring ring-cyan-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 bg-cyan-50/50"
               onChange={(e) => setNewTask({ ...newtask, todo: e.target.value })}
