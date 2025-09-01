@@ -66,12 +66,12 @@ function App() {
               btnTitle={
                 <div className="flex justify-center items-center gap-2">
                   {" "}
-                  <TbCopyPlusFilled className="text-xl" />
-                  <span>New Task</span>
+                  <TbCopyPlusFilled className="text-2xl sm:text-xl" />
+                  <span className="hidden sm:block">New Task</span>
                 </div>
               }
               onBtnClick={goToAddTask}
-              customStyle="fixed bottom-10 right-6 sm:right-8 z-50 text-lg"
+              customStyle="fixed bottom-10 right-9 sm:right-8 z-50 text-lg px-2! sm:px-5!"
             />
             {toDos.map((toDoObj) => {
               const { id, emoji, todo, priority, isDone, createdAt } = toDoObj;
