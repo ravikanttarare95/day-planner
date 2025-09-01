@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import Button from "./../components/Button";
 import logo from "./../../public/logo.png";
 import Footer from "./../components/Footer";
+import { TbCopyPlusFilled } from "react-icons/tb";
 
 function App() {
   const navigate = useNavigate();
@@ -47,7 +48,13 @@ function App() {
                 You haven’t planned your day. Start by adding your first task!
               </p>
               <Button
-                btnTitle="+ New Task"
+                btnTitle={
+                  <div className="flex justify-center items-center gap-2">
+                    {" "}
+                    <TbCopyPlusFilled className="text-xl" />
+                    <span>New Task</span>
+                  </div>
+                }
                 onBtnClick={goToAddTask}
                 customStyle="bg-amber-500 hover:bg-amber-600"
               />
@@ -56,7 +63,13 @@ function App() {
         ) : (
           <div className="relative rounded-xl bg-white shadow-2xl border border-cyan-100 p-5 sm:p-10 h-[480px] overflow-y-auto">
             <Button
-              btnTitle="+ New Task"
+              btnTitle={
+                <div className="flex justify-center items-center gap-2">
+                  {" "}
+                  <TbCopyPlusFilled className="text-xl" />
+                  <span>New Task</span>
+                </div>
+              }
               onBtnClick={goToAddTask}
               customStyle="fixed bottom-10 right-6 sm:right-8 z-50 text-lg"
             />

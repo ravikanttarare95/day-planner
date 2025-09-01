@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import toast, { Toaster } from "react-hot-toast";
 import Footer from "./../components/Footer";
+import { TbCopyPlusFilled } from "react-icons/tb";
 
 function NewTodo() {
   const [newtask, setNewTask] = useState({
@@ -89,7 +90,13 @@ function NewTodo() {
           </div>
 
           <Button
-            btnTitle="+ Add Task"
+            btnTitle={
+              <div className="flex justify-center items-center gap-2">
+                {" "}
+                <TbCopyPlusFilled className="text-xl" />
+                <span>Add Task</span>
+              </div>
+            }
             customStyle="w-full text-lg bg-amber-500 hover:bg-amber-600"
             onBtnClick={addTask}
           />
