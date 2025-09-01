@@ -13,7 +13,7 @@ function EditTodo() {
     priority: "",
     emoji: "🎯",
   });
-  const [error, setError] = useState("Error");
+  const [error, setError] = useState("");
   const [isEmojiOpen, setIsEmojiOpen] = useState(false);
 
   const navigate = useNavigate();
