@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import EmojiPicker from "emoji-picker-react";
 import Button from "./../components/Button";
 import axios from "axios";
@@ -13,11 +13,22 @@ function NewTodo() {
     priority: "",
     emoji: "🎯",
   });
+  const [error, setError] = useState("Error");
   const [isEmojiOpen, setIsEmojiOpen] = useState(false);
 
   const navigate = useNavigate();
 
   const addTask = async () => {
+    if (newtask.todo.length === 0) {
+      return toast.error("Please enter a task before adding.");
+    }
+    if (error) {
+      return toast.error(error);
+    }
+
+    if (!newtask.priority) {
+      return toast.error("Please select Priority");
+    }
     const response = await axios.post(
       `${import.meta.env.VITE_API_URL}/todos`,
       newtask
@@ -30,8 +41,22 @@ function NewTodo() {
     }
   };
 
+  useEffect(() => {
+    if (newtask.todo.length === 0) {
+      setError("");
+    } else if (newtask.todo.length < 3) {
+      setError("Task must be at least 3 characters long.");
+    } else {
+      setError("");
+    }
+
+    if (newtask.todo.length > 100) {
+      setError("Task is too long (max 100 characters).");
+    }
+  }, [newtask.todo]);
+
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-cyan-50 via-teal-50 to-amber-50 px-4">
+    <div className="relative min-h-screen flex items-start justify-center bg-gradient-to-br from-cyan-50 via-teal-50 to-amber-50 px-4 pt-10 sm:pt-16 transition-colors duration-500">
       <div className="bg-white/90 shadow-2xl rounded-2xl w-full max-w-md p-10">
         <h1 className="text-4xl font-bold text-center text-cyan-800 mb-8 tracking-tight">
           📝 New Task
@@ -52,6 +77,13 @@ function NewTodo() {
               className="w-full px-4 py-2 ring ring-cyan-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 bg-cyan-50/50"
               onChange={(e) => setNewTask({ ...newtask, todo: e.target.value })}
             />
+            <span
+              className={`block text-sm text-red-500 transition-all duration-300 ${
+                error ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"
+              }`}
+            >
+              {error || " "}
+            </span>
           </div>
 
           <div>

@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router";
 import toast, { Toaster } from "react-hot-toast";
 import Footer from "./../components/Footer";
+import { MdTipsAndUpdates } from "react-icons/md";
 
 function EditTodo() {
   const [editTask, setEditTask] = useState({
@@ -12,12 +13,24 @@ function EditTodo() {
     priority: "",
     emoji: "🎯",
   });
+  const [error, setError] = useState("Error");
   const [isEmojiOpen, setIsEmojiOpen] = useState(false);
 
   const navigate = useNavigate();
   const { id } = useParams();
 
   const updateTask = async (id) => {
+    if (editTask.todo.length === 0) {
+      return toast.error("Please enter a task before adding.");
+    }
+    if (error) {
+      return toast.error(error);
+    }
+
+    if (!editTask.priority) {
+      return toast.error("Please select Priority");
+    }
+
     const response = await axios.put(
       `${import.meta.env.VITE_API_URL}/todos/${id}`,
       editTask
@@ -47,8 +60,22 @@ function EditTodo() {
     loadTask(id);
   }, [id]);
 
+  useEffect(() => {
+    if (editTask.todo.length === 0) {
+      setError("");
+    } else if (editTask.todo.length < 3) {
+      setError("Task must be at least 3 characters long.");
+    } else {
+      setError("");
+    }
+
+    if (editTask.todo.length > 100) {
+      setError("Task is too long (max 100 characters).");
+    }
+  }, [editTask.todo]);
+
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-cyan-50 via-teal-50 to-amber-50 px-4">
+    <div className="relative min-h-screen flex items-start justify-center bg-gradient-to-br from-cyan-50 via-teal-50 to-amber-50 px-4 pt-10 sm:pt-16 transition-colors duration-500">
       <div className="bg-white/90 shadow-2xl rounded-2xl w-full max-w-md p-10">
         <h1 className="text-4xl font-bold text-center text-cyan-800 mb-8 tracking-tight">
           📝 Edit Task {id}
@@ -68,8 +95,15 @@ function EditTodo() {
                 setEditTask({ ...editTask, todo: e.target.value })
               }
             />
-          </div>
 
+            <span
+              className={`block text-sm text-red-500 transition-all duration-300 ${
+                error ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"
+              }`}
+            >
+              {error || " "}
+            </span>
+          </div>{" "}
           <div>
             <label
               htmlFor="select-priority"
@@ -93,7 +127,6 @@ function EditTodo() {
               <option value="low">🟢 Low</option>
             </select>
           </div>
-
           <div className="flex flex-col gap-2">
             <button
               type="button"
@@ -105,9 +138,13 @@ function EditTodo() {
               </span>
             </button>
           </div>
-
           <Button
-            btnTitle="+ Update Task"
+            btnTitle={
+              <div className="flex justify-center items-center gap-2">
+                <MdTipsAndUpdates className="text-xl" />{" "}
+                <span>Update Task</span>
+              </div>
+            }
             customStyle="w-full text-lg bg-amber-500 hover:bg-amber-600"
             onBtnClick={() => {
               updateTask(id);
