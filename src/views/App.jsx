@@ -6,6 +6,7 @@ import Button from "./../components/Button";
 import logo from "./../../public/logo.png";
 import Footer from "./../components/Footer";
 import { TbCopyPlusFilled } from "react-icons/tb";
+import GoalImg from "./../assets/goal.png";
 
 function App() {
   const navigate = useNavigate();
@@ -26,25 +27,30 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-cyan-50 via-white to-amber-50">
-      <header className="py-8 text-center">
-        <h1 className="text-5xl font-extrabold text-cyan-800 drop-shadow-sm tracking-tight">
+      <header className="pt-10 pb-5 text-center">
+        <h1 className="text-6xl font-extrabold text-cyan-900 drop-shadow-sm tracking-tight">
           DayPlanner
         </h1>
-        <p className="text-gray-600 mt-2 font-medium flex justify-center items-center gap-2">
+        <p className="text-gray-700 mt-3 font-medium flex justify-center items-center gap-3 text-lg">
           Plan your day smartly
-          <img src={logo} alt="Logo" className="w-6 h-6 inline-block" />
+          <img
+            src={logo}
+            alt="Logo"
+            className="w-8 h-8 inline-block drop-shadow-sm"
+          />
         </p>
       </header>
 
       <main className=" w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {toDos.length === 0 ? (
-          <div className="max-w-md mx-auto mt-20 p-10 rounded-2xl shadow-lg bg-gradient-to-br from-cyan-50 via-white to-amber-50 text-center border border-cyan-100">
+          <div className="max-w-md mx-auto mt-5 p-10 rounded-2xl shadow-lg bg-gradient-to-br from-cyan-50 via-white to-amber-50 text-center border border-cyan-100">
             <div className="flex flex-col items-center">
-              <div className="w-16 h-16 flex items-center justify-center rounded-full bg-cyan-100 text-cyan-600 text-3xl mb-4 shadow-inner">
-                📝
+              <div className="w-35 mb-2">
+                <img src={GoalImg} alt="Goal Image" />
               </div>
-              <h2 className="text-2xl font-bold text-cyan-800">No Tasks Yet</h2>
-              <p className="text-gray-500 mt-2 mb-6">
+
+              <h2 className="text-3xl font-bold text-cyan-800">No Tasks Yet</h2>
+              <p className="text-gray-500 mt-2">
                 You haven’t planned your day. Start by adding your first task!
               </p>
               <Button
@@ -52,7 +58,7 @@ function App() {
                   <div className="flex justify-center items-center gap-2">
                     {" "}
                     <TbCopyPlusFilled className="text-xl" />
-                    <span>New Task</span>
+                    <span>Create New Task</span>
                   </div>
                 }
                 onBtnClick={goToAddTask}
