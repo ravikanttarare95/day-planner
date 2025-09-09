@@ -62,7 +62,7 @@ function NewTodo() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center w-full max-w-5xl bg-white/80 rounded-2xl shadow-2xl backdrop-blur-sm p-6 sm:p-10 mx-5 mb-10">
           <img
             src={WorkImg}
-            alt="Work Illustration"
+            alt="Work Image"
             className="w-60 sm:w-90 drop-shadow-lg mx-auto"
           />
 
