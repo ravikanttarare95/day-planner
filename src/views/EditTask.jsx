@@ -75,7 +75,7 @@ function EditTodo() {
   }, [editTask.todo]);
 
   return (
-    <div className="relative min-h-screen flex items-start justify-center bg-gradient-to-br from-cyan-50 via-teal-50 to-amber-50 px-4 pt-10 sm:pt-16 transition-colors duration-500">
+    <div className="relative min-h-screen flex items-start justify-center bg-gradient-to-br from-cyan-50 via-white to-amber-50 px-4 pt-10 sm:pt-16 transition-colors duration-500">
       <div className="bg-white/90 shadow-2xl rounded-2xl w-full max-w-md p-10">
         <h1 className="text-4xl font-bold text-center text-cyan-800 mb-8 tracking-tight">
           📝 Edit Task {id}
@@ -141,7 +141,7 @@ function EditTodo() {
           <Button
             btnTitle={
               <div className="flex justify-center items-center gap-2">
-                <MdTipsAndUpdates className="text-xl" />{" "}
+                <MdTipsAndUpdates className="text-2xl" />{" "}
                 <span>Update Task</span>
               </div>
             }

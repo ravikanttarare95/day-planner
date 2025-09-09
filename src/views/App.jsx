@@ -27,16 +27,16 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-cyan-50 via-white to-amber-50">
-      <header className="pt-10 pb-5 text-center">
-        <h1 className="text-6xl font-extrabold text-cyan-900 drop-shadow-sm tracking-tight">
+      <header className="py-10 text-center">
+        <h1 className="text-5xl sm:text-6xl font-extrabold text-cyan-900 drop-shadow-sm tracking-tight">
           DayPlanner
         </h1>
-        <p className="text-gray-700 mt-3 font-medium flex justify-center items-center gap-3 text-lg">
+        <p className="text-gray-700 mt-3 font-medium flex justify-center items-center gap-3 text-md sm:text-lg">
           Plan your day smartly
           <img
             src={logo}
             alt="Logo"
-            className="w-8 h-8 inline-block drop-shadow-sm"
+            className="w-6 h-6  sm:w-8 sm:h-8 inline-block drop-shadow-sm"
           />
         </p>
       </header>
@@ -57,7 +57,7 @@ function App() {
                 btnTitle={
                   <div className="flex justify-center items-center gap-2">
                     {" "}
-                    <TbCopyPlusFilled className="text-xl" />
+                    <TbCopyPlusFilled className="text-2xl" />
                     <span>Create New Task</span>
                   </div>
                 }
@@ -72,12 +72,12 @@ function App() {
               btnTitle={
                 <div className="flex justify-center items-center gap-2">
                   {" "}
-                  <TbCopyPlusFilled className="text-2xl sm:text-xl" />
+                  <TbCopyPlusFilled className="text-3xl sm:text-2xl" />
                   <span className="hidden sm:block">New Task</span>
                 </div>
               }
               onBtnClick={goToAddTask}
-              customStyle="fixed bottom-10 right-9 sm:right-8 z-50 text-lg px-2! sm:px-5!"
+              customStyle="fixed bottom-10 right-4 sm:right-8 z-50 text-lg px-2! sm:px-5!"
             />
             {toDos.map((toDoObj) => {
               const { id, emoji, todo, priority, isDone, createdAt } = toDoObj;
