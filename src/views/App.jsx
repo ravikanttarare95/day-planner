@@ -36,7 +36,7 @@ function App() {
           <img
             src={logo}
             alt="Logo"
-            className="w-6 h-6  sm:w-8 sm:h-8 inline-block drop-shadow-sm"
+            className="w-6 h-6 sm:w-8 sm:h-8 inline-block drop-shadow-sm"
           />
         </p>
       </header>
@@ -77,7 +77,7 @@ function App() {
                 </div>
               }
               onBtnClick={goToAddTask}
-              customStyle="fixed bottom-10 right-4 sm:right-8 z-50 text-lg px-2! sm:px-5!"
+              customStyle="fixed bottom-17 right-4 sm:right-8 z-50 text-lg px-2! sm:px-5!"
             />
             {toDos.map((toDoObj) => {
               const { id, emoji, todo, priority, isDone, createdAt } = toDoObj;

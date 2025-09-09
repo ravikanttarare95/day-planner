@@ -78,7 +78,7 @@ function EditTodo() {
   return (
     <div className="relative min-h-screen flex flex-col justify-between bg-gradient-to-br from-cyan-50 via-white to-amber-50 transition-colors duration-500">
       <div className="flex-grow flex items-center justify-center py-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center w-full max-w-5xl bg-white/80 rounded-2xl shadow-2xl backdrop-blur-sm p-6 sm:p-10 mx-5 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-10 items-center w-full max-w-5xl bg-white/80 rounded-2xl shadow-2xl backdrop-blur-sm p-6 sm:p-10 mx-5 mb-10">
           <img
             src={EditTaskImg}
             alt="Work Image"
