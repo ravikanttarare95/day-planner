@@ -63,7 +63,7 @@ function NewTodo() {
           <img
             src={WorkImg}
             alt="Work Image"
-            className="w-60 sm:w-90 drop-shadow-lg mx-auto"
+            className="w-60 sm:w-90 drop-shadow-xs drop-shadow-cyan-900 mx-auto"
           />
 
           <div className="bg-white/90 rounded-2xl w-full">
